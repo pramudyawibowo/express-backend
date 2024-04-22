@@ -9,6 +9,8 @@ import helmet from "helmet";
 import http from "http";
 
 import { ApiKeyMiddleware } from "./middlewares";
+import { SocketUtils } from "./utils";
+import { NotificationController } from "./controllers";
 
 class App {
     public app: Application;
@@ -41,6 +43,7 @@ class App {
 
     public routes(): void {
         // insert routes here
+        this.app.use("/notifications", new NotificationController().router);
 
         // dont change this route (for unknown route, send 404 response)
         this.app.all("*", (req: Request, res: Response) => {
@@ -55,6 +58,12 @@ class App {
     public listen(): void {
         this.server.listen(this.port, () => {
             console.log(`App listening on the http://localhost:${this.port}`);
+        });
+
+        SocketUtils.instance().initialize(this.server);
+
+        SocketUtils.instance().getIO().on("connection", (socket) => {
+            console.log("Socket connected", socket.id);
         });
     }
 }

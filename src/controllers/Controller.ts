@@ -1,7 +1,7 @@
 import { Response } from "express";
 
 export default class Controller {
-    public success(response: Response, message: string, data: object | null = null): Response {
+    public success(response: Response, message: string, data: any | null = null): Response {
         return response.status(200).json({
             data: data,
             message: message,
@@ -9,7 +9,7 @@ export default class Controller {
         });
     }
 
-    public created(response: Response, message: string, data: object | null = null): Response {
+    public created(response: Response, message: string, data: any | null = null): Response {
         return response.status(201).json({
             data: data,
             message: message,
@@ -17,7 +17,7 @@ export default class Controller {
         });
     }
 
-    public badRequest(response: Response, message: string, data: object | null = null): Response {
+    public badRequest(response: Response, message: string, data: any | null = null): Response {
         return response.status(400).json({
             data: data,
             message: message,
@@ -25,7 +25,7 @@ export default class Controller {
         });
     }
 
-    public unauthorized(response: Response, message: string, data: object | null = null): Response {
+    public unauthorized(response: Response, message: string, data: any | null = null): Response {
         return response.status(401).json({
             data: data,
             message: message,
@@ -33,7 +33,7 @@ export default class Controller {
         });
     }
 
-    public forbidden(response: Response, message: string, data: object | null = null): Response {
+    public forbidden(response: Response, message: string, data: any | null = null): Response {
         return response.status(403).json({
             data: data,
             message: message,
@@ -41,7 +41,7 @@ export default class Controller {
         });
     }
 
-    public notFound(response: Response, message: string, data: object | null = null): Response {
+    public notFound(response: Response, message: string, data: any | null = null): Response {
         return response.status(404).json({
             data: data,
             message: message,
@@ -49,7 +49,7 @@ export default class Controller {
         });
     }
 
-    public conflict(response: Response, message: string, data: object | null = null): Response {
+    public conflict(response: Response, message: string, data: any | null = null): Response {
         return response.status(409).json({
             data: data,
             message: message,
@@ -57,7 +57,7 @@ export default class Controller {
         });
     }
 
-    public error(response: Response, message: string, data: object | null = null): Response {
+    public error(response: Response, message: string, data: any | null = null): Response {
         return response.status(500).json({
             data: data,
             message: message,
